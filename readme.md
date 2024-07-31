@@ -9,4 +9,4 @@
 
 - Ter a IDE do [Arduino](https://www.arduino.cc/en/software) instalada na máquina
 - Adicionar a url `https://arduino.esp8266.com/stable/package_esp8266com_index.json` ao gerenciador de placas da sua IDE
-- Instalar a biblioteca [IRremoteESP8266](https://www.arduino.cc/reference/en/libraries/irremoteesp8266/) instalada na IDE
+- Instalar a biblioteca [IRremoteESP8266](https://www.arduino.cc/reference/en/libraries/irremoteesp8266/) na IDE
