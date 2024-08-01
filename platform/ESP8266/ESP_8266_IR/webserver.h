@@ -4,6 +4,7 @@
 #include <ESP8266WebServer.h>
 #include <IRremoteESP8266.h>
 #include <IRsend.h>
+#include "index_html.h"
 
 class WebServer
 {
@@ -17,7 +18,6 @@ private:
     void handleRoot();
     void handleOn();
     void handleOff();
-    String showHTML();
     uint64_t powerOn;
     uint64_t powerOff;
 };
