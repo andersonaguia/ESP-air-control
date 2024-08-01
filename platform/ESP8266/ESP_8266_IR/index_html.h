@@ -1,120 +1,139 @@
 const char index_html[] PROGMEM = R"rawliteral(
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>IOT LAB</title>
+    <link rel="icon" href="https://softexlabs.com.br/static/images/SOFTLABS.svg" type ="image/x-icon" />
     <style>
-        body {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            align-items: center;
-            min-height: 100vh;
-            margin: 0;
-            background-color: #aaaaaa; 
-            font-family: Arial, sans-serif;
-            text-align: center;
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: Poppins, sans-serif;
+        background-color: #f9fafd;
+      }
+      header {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      img {
+        width: 10rem;
+        height: auto;
+      }
+      h1 {
+        font-size: 2.5rem;
+      }
+      ul {
+        width: 20%;
+        list-style-type: none;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }     
+      button {
+        width: 100%;
+        height: 100%;
+        padding: 1rem;
+        background-color: #0170b9;
+        color: #ffffff;
+        font-size: 1rem;
+        cursor: pointer;
+        border-radius: 10px; 
+        border: none;       
+      }
+      button:hover {
+          opacity: 0.8;
+      }
+      .buttonOff{
+        background-color: #3a3a3a;
+      }
+      main {
+        width: 100%;
+        min-height: 75vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      footer {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+      }
+      .footer-img {
+        width: 10rem;
+        padding: 0 2rem;
+      }
+      span {
+        font-size: .8rem;
+      }
+      @media (max-width: 768px) {
+        ul {
+          width: 80%;
         }
-        .header, .footer {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
+        header {
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
         }
-        .header img {
-            width: 200px; 
-            height: auto;
-            margin-top: 20px;
+        h1 {
+          font-size: 1rem;
+          margin-top: 1rem;
         }
-        .title {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin: 20px 0;
+        .footer-img {
+          width: 6rem;
         }
-        .title h1 {
-            margin: 20px 0;
+        span {
+          font-size: .3rem;
         }
-        .buttons {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-        .button {
-            padding: 15px 30px;
-            font-size: 16px;
-            color: #000;
-            background-color: #fff;
-            border: none;
-            border-radius: 25px; 
-            cursor: pointer;
-            text-transform: uppercase;
-            font-weight: bold;
-            width: 150px;
-            transition: background-color 0.3s;
-        }
-        .button.ligar-verde {
-            background-color: green;
-            color: white;
-        }
-        .button.desligar-vermelho {
-            background-color: red;
-            color: white;
-        }
-        .footer {
-            margin-bottom: 20px;
-        }
-        .footer img {
-            width: 150px; 
-            height: auto;
-        }
-        .footer p {
-            margin-top: 10px;
-            font-size: 12px;
-            color: #000;
-        }
+      }
     </style>
-</head>
-<body>
-    <header class="header">
-        <div class="title">
-            <img src="https://softexlabs.com.br/static/images/softexPE.svg" alt="Logo SOFTEX">
-            <h1>IOT LAB</h1>
-            <h3>CONTROLE AUTOMAÇÃO <br> AR CONDICIONADO</h3>
-        </div>
-    </header>
-    <div class="buttons">
-        <button class="button" id="ligarButton" onclick="ligar()">Ligar</button>
-        <button class="button" id="desligarButton" onclick="desligar()">Desligar</button>
-    </div>
-    <footer class="footer">
-        <img src="https://softexlabs.com.br/static/images/SOFTLABS.svg" alt="Logo SOFTEX">
-        <p>© 2024 IOT LAB. Todos os direitos reservados.</p>
-    </footer>
     <script>
-        function ligar() {
+        function powerOn() {
             fetch('/on').then(response => {
                 if (response.ok) {
-                    const ligarButton = document.getElementById('ligarButton');
-                    const desligarButton = document.getElementById('desligarButton');
-                    ligarButton.classList.add('ligar-verde');
-                    desligarButton.classList.remove('desligar-vermelho');
+                    console.log("Enviado comando para ligar o ar");
+                }else{
+                    console.log("Comando falhou, tente novamente!");
                 }
             });
         }
-        function desligar() {
+        function powerOff() {
             fetch('/off').then(response => {
                 if (response.ok) {
-                    const ligarButton = document.getElementById('ligarButton');
-                    const desligarButton = document.getElementById('desligarButton');
-                    desligarButton.classList.add('desligar-vermelho');
-                    ligarButton.classList.remove('ligar-verde');
+                    console.log("Enviado comando para desligar o ar");
+                }else{
+                    console.log("Comando falhou, tente novamente!");
                 }
             });
         }
     </script>
-</body>
+  </head>
+  <body>
+    <header>
+      <img src="https://softexlabs.com.br/static/images/SOFTLABS.svg" alt="Logo SOFTEX Labs" />
+      <h1>IOT LAB</h1>
+    </header>
+    <main>
+      <ul>
+        <li><button onclick="powerOn()">LIGAR</button></li>
+        <li><button onclick="powerOff()" class="buttonOff">DESLIGAR</button></li>
+      </ul>
+    </main>
+    <footer>
+      <div>
+        <img class="footer-img" src="https://softexlabs.com.br/static/images/softexPE.svg" alt="Logo SOFTEX" />
+      </div>
+      <span>&copy; 2024 IOT LAB. Todos os direitos reservados.</span>
+    </footer>
+  </body>
 </html>
 )rawliteral";
